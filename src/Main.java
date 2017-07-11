@@ -29,7 +29,7 @@ public class Main {
         label = new JLabel(nameSave);
         button = new JButton("НЕ СПИ!");
 
-        //label.setText(nameSave);
+
     }
 
         public static void main(String[] args) throws IOException {
@@ -71,8 +71,6 @@ public class Main {
                 else{
                     nameSave = "Могу заснуть";
                     button.setText("ОТКЛЮЧЕНО");
-//                    System.out.println(sleepThread.getName() + " stop = " + isStop);
-//                    sleepThread.interrupt();
                     isStop = true;
                     button.setBackground(Color.RED);
                 }
@@ -86,7 +84,7 @@ public class Main {
             @Override
             public void run() {
 
-                int tenMinutes = 600000;
+                int tenMinutes = 100000;
                 int timer = 0;
                 String dotsVisible = "";
 
@@ -98,14 +96,10 @@ public class Main {
                         e.printStackTrace();
                     }
                     if(timer <= 1){
-                        if(Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_CAPS_LOCK)) {
+                       // if(Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_CAPS_LOCK))
                             Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
-                            Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, true);
-                        }
-                        else{
-                            Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, true);
                             Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
-                        }
+
                         timeOut = 0;
                         button.setText("ТАЙМЕР СБРОШЕН");
                         button.setBackground(Color.YELLOW);
@@ -117,8 +111,6 @@ public class Main {
                     buttonText = "сброс через " + dotsVisible + " " + (timer) + " мин";
                     //buttonText = "сброс через : " + timeOut;
                     button.setText(buttonText);
-                    //System.out.println(buttonText);
-                    //нажатие капс лока
                 }
                 button.setText("ОТКЛЮЧЕНО");
             }
