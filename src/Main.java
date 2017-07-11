@@ -84,7 +84,7 @@ public class Main {
             @Override
             public void run() {
 
-                int tenMinutes = 100000;
+                int tenMinutes = 650000;
                 int timer = 0;
                 String dotsVisible = "";
 
@@ -96,9 +96,13 @@ public class Main {
                         e.printStackTrace();
                     }
                     if(timer <= 1){
-                       // if(Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_CAPS_LOCK))
+                        if(!Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_CAPS_LOCK))
+                            Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, true);
                             Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
+
+                        if(Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_CAPS_LOCK))
                             Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
+                            Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, true);
 
                         timeOut = 0;
                         button.setText("ТАЙМЕР СБРОШЕН");
@@ -108,7 +112,7 @@ public class Main {
                     timeOut +=1000;
                     if(dotsVisible.equals(":")){dotsVisible = "";}
                     else{dotsVisible = ":";}
-                    buttonText = "сброс через " + dotsVisible + " " + (timer) + " мин";
+                    buttonText = "сброс через " + dotsVisible + " " + (timer-1) + " мин";
                     //buttonText = "сброс через : " + timeOut;
                     button.setText(buttonText);
                 }
